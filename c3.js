@@ -1,9 +1,10 @@
 /* @license C3.js v0.4.23 | (c) C3 Team and other contributors | http://c3js.org/ */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
-    (global.c3 = factory());
-}(this, (function () { 'use strict';
+        typeof define === 'function' && define.amd ? define(factory) :
+            (global.c3 = factory());
+}(this, (function () {
+    'use strict';
 
     var CLASS = {
         target: 'c3-target',
@@ -85,39 +86,39 @@
     };
 
     var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-      return typeof obj;
+        return typeof obj;
     } : function (obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
     };
 
     var classCallCheck = function (instance, Constructor) {
-      if (!(instance instanceof Constructor)) {
-        throw new TypeError("Cannot call a class as a function");
-      }
+        if (!(instance instanceof Constructor)) {
+            throw new TypeError("Cannot call a class as a function");
+        }
     };
 
     var inherits = function (subClass, superClass) {
-      if (typeof superClass !== "function" && superClass !== null) {
-        throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-      }
-
-      subClass.prototype = Object.create(superClass && superClass.prototype, {
-        constructor: {
-          value: subClass,
-          enumerable: false,
-          writable: true,
-          configurable: true
+        if (typeof superClass !== "function" && superClass !== null) {
+            throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
         }
-      });
-      if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+
+        subClass.prototype = Object.create(superClass && superClass.prototype, {
+            constructor: {
+                value: subClass,
+                enumerable: false,
+                writable: true,
+                configurable: true
+            }
+        });
+        if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
     };
 
     var possibleConstructorReturn = function (self, call) {
-      if (!self) {
-        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-      }
+        if (!self) {
+            throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+        }
 
-      return call && (typeof call === "object" || typeof call === "function") ? call : self;
+        return call && (typeof call === "object" || typeof call === "function") ? call : self;
     };
 
     var isValue = function isValue(v) {
@@ -413,8 +414,8 @@
                     tick = g.selectAll(".tick").data(ticks, scale1),
                     tickEnter = tick.enter().insert("g", ".domain").attr("class", "tick").style("opacity", 1e-6),
 
-                // MEMO: No exit transition. The reason is this transition affects max tick width calculation because old tick will be included in the ticks.
-                tickExit = tick.exit().remove(),
+                    // MEMO: No exit transition. The reason is this transition affects max tick width calculation because old tick will be included in the ticks.
+                    tickExit = tick.exit().remove(),
                     tickUpdate = internal.transitionise(tick).style("opacity", 1),
                     tickTransform,
                     tickX,
@@ -438,8 +439,8 @@
                 var lineUpdate = tickUpdate.select("line"),
                     textUpdate = tickUpdate.select("text"),
                     tspanUpdate = tick.select("text").selectAll('tspan').data(function (d, i) {
-                    return internal.tspanData(d, i, ticks, scale1);
-                });
+                        return internal.tspanData(d, i, ticks, scale1);
+                    });
 
                 tspanUpdate.enter().append('tspan');
                 tspanUpdate.exit().remove();
@@ -470,7 +471,7 @@
                             }).attr('dx', function (d, i) {
                                 return internal.tspanDx(d, i);
                             });
-                            pathUpdate.attr("d", "M" + internal.range[0] + "," + internal.outerTickSize + "V0H" + internal.range[1] + "V" + internal.outerTickSize);
+                            pathUpdate.attr("d", "M" + internal.range[0] + ",0H" + internal.range[1]);
                             break;
                         }
                     case "top":
@@ -639,22 +640,22 @@
         $$.axes.y.append("text").attr("class", CLASS.axisYLabel).attr("transform", config.axis_rotated ? "" : "rotate(-90)").style("text-anchor", this.textAnchorForYAxisLabel.bind(this));
 
         $$.axes.y2 = main.append("g").attr("class", CLASS.axis + ' ' + CLASS.axisY2)
-        // clip-path?
-        .attr("transform", $$.getTranslate('y2')).style("visibility", config.axis_y2_show ? 'visible' : 'hidden');
+            // clip-path?
+            .attr("transform", $$.getTranslate('y2')).style("visibility", config.axis_y2_show ? 'visible' : 'hidden');
         $$.axes.y2.append("text").attr("class", CLASS.axisY2Label).attr("transform", config.axis_rotated ? "" : "rotate(-90)").style("text-anchor", this.textAnchorForY2AxisLabel.bind(this));
     };
     c3_axis_fn.getXAxis = function getXAxis(scale, orient, tickFormat, tickValues, withOuterTick, withoutTransition, withoutRotateTickText) {
         var $$ = this.owner,
             config = $$.config,
             axisParams = {
-            isCategory: $$.isCategorized(),
-            withOuterTick: withOuterTick,
-            tickMultiline: config.axis_x_tick_multiline,
-            tickMultilineMax: config.axis_x_tick_multiline ? Number(config.axis_x_tick_multilineMax) : 0,
-            tickWidth: config.axis_x_tick_width,
-            tickTextRotate: withoutRotateTickText ? 0 : config.axis_x_tick_rotate,
-            withoutTransition: withoutTransition
-        },
+                isCategory: $$.isCategorized(),
+                withOuterTick: withOuterTick,
+                tickMultiline: config.axis_x_tick_multiline,
+                tickMultilineMax: config.axis_x_tick_multiline ? Number(config.axis_x_tick_multilineMax) : 0,
+                tickWidth: config.axis_x_tick_width,
+                tickTextRotate: withoutRotateTickText ? 0 : config.axis_x_tick_rotate,
+                withoutTransition: withoutTransition
+            },
             axis = new this.internal(this, axisParams).axis.scale(scale).orient(orient);
 
         if ($$.isTimeSeries() && tickValues && typeof tickValues !== "function") {
@@ -693,10 +694,10 @@
         var $$ = this.owner,
             config = $$.config,
             axisParams = {
-            withOuterTick: withOuterTick,
-            withoutTransition: withoutTransition,
-            tickTextRotate: withoutRotateTickText ? 0 : config.axis_y_tick_rotate
-        },
+                withOuterTick: withOuterTick,
+                withoutTransition: withoutTransition,
+                tickTextRotate: withoutRotateTickText ? 0 : config.axis_y_tick_rotate
+            },
             axis = new this.internal(this, axisParams).axis.scale(scale).orient(orient).tickFormat(tickFormat);
         if ($$.isTimeSeriesY()) {
             axis.ticks($$.d3.time[config.axis_y_tick_time_value], config.axis_y_tick_time_interval);
@@ -713,14 +714,33 @@
         var $$ = this.owner,
             config = $$.config,
             format = $$.isTimeSeries() ? $$.defaultAxisTimeFormat : $$.isCategorized() ? $$.categoryName : function (v) {
-            return v < 0 ? v.toFixed(0) : v;
-        };
+                return v < 0 ? v.toFixed(0) : v;
+            };
         if (config.axis_x_tick_format) {
             if (isFunction(config.axis_x_tick_format)) {
                 format = config.axis_x_tick_format;
             } else if ($$.isTimeSeries()) {
                 format = function format(date) {
                     return date ? $$.axisTimeFormat(config.axis_x_tick_format)(date) : "";
+                };
+            }
+        }
+        return isFunction(format) ? function (v) {
+            return format.call($$, v);
+        } : format;
+    };
+    c3_axis_fn.getSubXAxisTickFormat = function getSubXAxisTickFormat() {
+        var $$ = this.owner,
+            config = $$.config,
+            format = $$.isTimeSeries() ? $$.defaultAxisTimeFormat : $$.isCategorized() ? $$.categoryName : function (v) {
+            return v < 0 ? v.toFixed(0) : v;
+        };
+        if (config.subchart_axis_x_tick_format) {
+            if (isFunction(config.subchart_axis_x_tick_format)) {
+                format = config.subchart_axis_x_tick_format;
+            } else if ($$.isTimeSeries()) {
+                format = function format(date) {
+                    return date ? $$.axisTimeFormat(subchart_axis_x_tick_format)(date) : "";
                 };
             }
         }
@@ -1294,7 +1314,7 @@
 
         // text when empty
         main.append("text").attr("class", CLASS.text + ' ' + CLASS.empty).attr("text-anchor", "middle") // horizontal centering of text at x position in all browsers.
-        .attr("dominant-baseline", "middle"); // vertical centering of text at y position in all browsers, except IE.
+            .attr("dominant-baseline", "middle"); // vertical centering of text at y position in all browsers, except IE.
 
         // Regions
         $$.initRegion();
@@ -1390,11 +1410,11 @@
             bottom: $$.getHorizontalAxisHeight('y') + legendHeightForBottom + $$.getCurrentPaddingBottom(),
             left: subchartHeight + (hasArc ? 0 : $$.getCurrentPaddingLeft())
         } : {
-            top: 4 + $$.getCurrentPaddingTop(), // for top tick text
-            right: hasArc ? 0 : $$.getCurrentPaddingRight(),
-            bottom: xAxisHeight + subchartHeight + legendHeightForBottom + $$.getCurrentPaddingBottom(),
-            left: hasArc ? 0 : $$.getCurrentPaddingLeft()
-        };
+                top: 4 + $$.getCurrentPaddingTop(), // for top tick text
+                right: hasArc ? 0 : $$.getCurrentPaddingRight(),
+                bottom: xAxisHeight + subchartHeight + legendHeightForBottom + $$.getCurrentPaddingBottom(),
+                left: hasArc ? 0 : $$.getCurrentPaddingLeft()
+            };
 
         // for subchart
         $$.margin2 = config.axis_rotated ? {
@@ -1403,11 +1423,11 @@
             bottom: 20 + legendHeightForBottom,
             left: $$.rotated_padding_left
         } : {
-            top: $$.currentHeight - subchartHeight - legendHeightForBottom,
-            right: NaN,
-            bottom: xAxisHeight + legendHeightForBottom,
-            left: $$.margin.left
-        };
+                top: $$.currentHeight - subchartHeight - legendHeightForBottom,
+                right: NaN,
+                bottom: xAxisHeight + legendHeightForBottom,
+                left: $$.margin.left
+            };
 
         // for legend
         $$.margin3 = {
@@ -1602,12 +1622,6 @@
         xForText = $$.generateXYForText(areaIndices, barIndices, lineIndices, true);
         yForText = $$.generateXYForText(areaIndices, barIndices, lineIndices, false);
 
-        // Update sub domain
-        if (withY) {
-            $$.subY.domain($$.getYDomain(targetsToShow, 'y'));
-            $$.subY2.domain($$.getYDomain(targetsToShow, 'y2'));
-        }
-
         // xgrid focus
         $$.updateXgridFocus();
 
@@ -1790,13 +1804,13 @@
             y = asHalfPixel($$.margin.top);
         } else if (target === 'context') {
             x = asHalfPixel($$.margin2.left);
-            y = asHalfPixel($$.margin2.top);
+            y = asHalfPixel($$.margin2.top + 110);
         } else if (target === 'legend') {
             x = $$.margin3.left;
             y = $$.margin3.top;
         } else if (target === 'x') {
             x = 0;
-            y = config.axis_rotated ? 0 : $$.height;
+            y = config.axis_rotated ? 0 : $$.height + 50;
         } else if (target === 'y') {
             x = 0;
             y = config.axis_rotated ? $$.height : 0;
@@ -1898,7 +1912,8 @@
         var $$ = this,
             brush = $$.svg.select(".c3-brush .background");
         $$.svg.attr('width', $$.currentWidth).attr('height', $$.currentHeight);
-        $$.svg.selectAll(['#' + $$.clipId, '#' + $$.clipIdForGrid]).select('rect').attr('width', $$.width).attr('height', $$.height);
+        $$.svg.select('#' + $$.clipId).select('rect').attr('width', $$.width).attr('height', $$.height);
+        $$.svg.select('#' + $$.clipIdForGrid).select('rect').attr('width', $$.width).attr('height', $$.height);
         $$.svg.select('#' + $$.clipIdForXAxis).select('rect').attr('x', $$.getXAxisClipX.bind($$)).attr('y', $$.getXAxisClipY.bind($$)).attr('width', $$.getXAxisClipWidth.bind($$)).attr('height', $$.getXAxisClipHeight.bind($$));
         $$.svg.select('#' + $$.clipIdForYAxis).select('rect').attr('x', $$.getYAxisClipX.bind($$)).attr('y', $$.getYAxisClipY.bind($$)).attr('width', $$.getYAxisClipWidth.bind($$)).attr('height', $$.getYAxisClipHeight.bind($$));
         $$.svg.select('#' + $$.clipIdForSubchart).select('rect').attr('width', $$.width).attr('height', brush.size() ? brush.attr('height') : 0);
@@ -2057,27 +2072,27 @@
     c3_chart_internal_fn.generateWait = function () {
         var transitionsToWait = [],
             f = function f(transition, callback) {
-            var timer = setInterval(function () {
-                var done = 0;
-                transitionsToWait.forEach(function (t) {
-                    if (t.empty()) {
-                        done += 1;
-                        return;
+                var timer = setInterval(function () {
+                    var done = 0;
+                    transitionsToWait.forEach(function (t) {
+                        if (t.empty()) {
+                            done += 1;
+                            return;
+                        }
+                        try {
+                            t.transition();
+                        } catch (e) {
+                            done += 1;
+                        }
+                    });
+                    if (done === transitionsToWait.length) {
+                        clearInterval(timer);
+                        if (callback) {
+                            callback();
+                        }
                     }
-                    try {
-                        t.transition();
-                    } catch (e) {
-                        done += 1;
-                    }
-                });
-                if (done === transitionsToWait.length) {
-                    clearInterval(timer);
-                    if (callback) {
-                        callback();
-                    }
-                }
-            }, 10);
-        };
+                }, 10);
+            };
         f.add = function (transition) {
             transitionsToWait.push(transition);
         };
@@ -2151,10 +2166,10 @@
 
             var aArgs = Array.prototype.slice.call(arguments, 1),
                 fToBind = this,
-                fNOP = function fNOP() {},
+                fNOP = function fNOP() { },
                 fBound = function fBound() {
-                return fToBind.apply(this instanceof fNOP ? this : oThis, aArgs.concat(Array.prototype.slice.call(arguments)));
-            };
+                    return fToBind.apply(this instanceof fNOP ? this : oThis, aArgs.concat(Array.prototype.slice.call(arguments)));
+                };
 
             fNOP.prototype = this.prototype;
             fBound.prototype = new fNOP();
@@ -2237,16 +2252,20 @@
             window.SVGPathSegMovetoAbs.prototype.clone = function () {
                 return new window.SVGPathSegMovetoAbs(undefined, this._x, this._y);
             };
-            Object.defineProperty(window.SVGPathSegMovetoAbs.prototype, "x", { get: function get() {
+            Object.defineProperty(window.SVGPathSegMovetoAbs.prototype, "x", {
+                get: function get() {
                     return this._x;
                 }, set: function set(x) {
-                    this._x = x;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegMovetoAbs.prototype, "y", { get: function get() {
+                    this._x = x; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegMovetoAbs.prototype, "y", {
+                get: function get() {
                     return this._y;
                 }, set: function set(y) {
-                    this._y = y;this._segmentChanged();
-                }, enumerable: true });
+                    this._y = y; this._segmentChanged();
+                }, enumerable: true
+            });
 
             window.SVGPathSegMovetoRel = function (owningPathSegList, x, y) {
                 window.SVGPathSeg.call(this, window.SVGPathSeg.PATHSEG_MOVETO_REL, "m", owningPathSegList);
@@ -2263,16 +2282,20 @@
             window.SVGPathSegMovetoRel.prototype.clone = function () {
                 return new window.SVGPathSegMovetoRel(undefined, this._x, this._y);
             };
-            Object.defineProperty(window.SVGPathSegMovetoRel.prototype, "x", { get: function get() {
+            Object.defineProperty(window.SVGPathSegMovetoRel.prototype, "x", {
+                get: function get() {
                     return this._x;
                 }, set: function set(x) {
-                    this._x = x;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegMovetoRel.prototype, "y", { get: function get() {
+                    this._x = x; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegMovetoRel.prototype, "y", {
+                get: function get() {
                     return this._y;
                 }, set: function set(y) {
-                    this._y = y;this._segmentChanged();
-                }, enumerable: true });
+                    this._y = y; this._segmentChanged();
+                }, enumerable: true
+            });
 
             window.SVGPathSegLinetoAbs = function (owningPathSegList, x, y) {
                 window.SVGPathSeg.call(this, window.SVGPathSeg.PATHSEG_LINETO_ABS, "L", owningPathSegList);
@@ -2289,16 +2312,20 @@
             window.SVGPathSegLinetoAbs.prototype.clone = function () {
                 return new window.SVGPathSegLinetoAbs(undefined, this._x, this._y);
             };
-            Object.defineProperty(window.SVGPathSegLinetoAbs.prototype, "x", { get: function get() {
+            Object.defineProperty(window.SVGPathSegLinetoAbs.prototype, "x", {
+                get: function get() {
                     return this._x;
                 }, set: function set(x) {
-                    this._x = x;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegLinetoAbs.prototype, "y", { get: function get() {
+                    this._x = x; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegLinetoAbs.prototype, "y", {
+                get: function get() {
                     return this._y;
                 }, set: function set(y) {
-                    this._y = y;this._segmentChanged();
-                }, enumerable: true });
+                    this._y = y; this._segmentChanged();
+                }, enumerable: true
+            });
 
             window.SVGPathSegLinetoRel = function (owningPathSegList, x, y) {
                 window.SVGPathSeg.call(this, window.SVGPathSeg.PATHSEG_LINETO_REL, "l", owningPathSegList);
@@ -2315,16 +2342,20 @@
             window.SVGPathSegLinetoRel.prototype.clone = function () {
                 return new window.SVGPathSegLinetoRel(undefined, this._x, this._y);
             };
-            Object.defineProperty(window.SVGPathSegLinetoRel.prototype, "x", { get: function get() {
+            Object.defineProperty(window.SVGPathSegLinetoRel.prototype, "x", {
+                get: function get() {
                     return this._x;
                 }, set: function set(x) {
-                    this._x = x;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegLinetoRel.prototype, "y", { get: function get() {
+                    this._x = x; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegLinetoRel.prototype, "y", {
+                get: function get() {
                     return this._y;
                 }, set: function set(y) {
-                    this._y = y;this._segmentChanged();
-                }, enumerable: true });
+                    this._y = y; this._segmentChanged();
+                }, enumerable: true
+            });
 
             window.SVGPathSegCurvetoCubicAbs = function (owningPathSegList, x, y, x1, y1, x2, y2) {
                 window.SVGPathSeg.call(this, window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_ABS, "C", owningPathSegList);
@@ -2345,36 +2376,48 @@
             window.SVGPathSegCurvetoCubicAbs.prototype.clone = function () {
                 return new window.SVGPathSegCurvetoCubicAbs(undefined, this._x, this._y, this._x1, this._y1, this._x2, this._y2);
             };
-            Object.defineProperty(window.SVGPathSegCurvetoCubicAbs.prototype, "x", { get: function get() {
+            Object.defineProperty(window.SVGPathSegCurvetoCubicAbs.prototype, "x", {
+                get: function get() {
                     return this._x;
                 }, set: function set(x) {
-                    this._x = x;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoCubicAbs.prototype, "y", { get: function get() {
+                    this._x = x; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoCubicAbs.prototype, "y", {
+                get: function get() {
                     return this._y;
                 }, set: function set(y) {
-                    this._y = y;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoCubicAbs.prototype, "x1", { get: function get() {
+                    this._y = y; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoCubicAbs.prototype, "x1", {
+                get: function get() {
                     return this._x1;
                 }, set: function set(x1) {
-                    this._x1 = x1;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoCubicAbs.prototype, "y1", { get: function get() {
+                    this._x1 = x1; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoCubicAbs.prototype, "y1", {
+                get: function get() {
                     return this._y1;
                 }, set: function set(y1) {
-                    this._y1 = y1;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoCubicAbs.prototype, "x2", { get: function get() {
+                    this._y1 = y1; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoCubicAbs.prototype, "x2", {
+                get: function get() {
                     return this._x2;
                 }, set: function set(x2) {
-                    this._x2 = x2;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoCubicAbs.prototype, "y2", { get: function get() {
+                    this._x2 = x2; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoCubicAbs.prototype, "y2", {
+                get: function get() {
                     return this._y2;
                 }, set: function set(y2) {
-                    this._y2 = y2;this._segmentChanged();
-                }, enumerable: true });
+                    this._y2 = y2; this._segmentChanged();
+                }, enumerable: true
+            });
 
             window.SVGPathSegCurvetoCubicRel = function (owningPathSegList, x, y, x1, y1, x2, y2) {
                 window.SVGPathSeg.call(this, window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_REL, "c", owningPathSegList);
@@ -2395,36 +2438,48 @@
             window.SVGPathSegCurvetoCubicRel.prototype.clone = function () {
                 return new window.SVGPathSegCurvetoCubicRel(undefined, this._x, this._y, this._x1, this._y1, this._x2, this._y2);
             };
-            Object.defineProperty(window.SVGPathSegCurvetoCubicRel.prototype, "x", { get: function get() {
+            Object.defineProperty(window.SVGPathSegCurvetoCubicRel.prototype, "x", {
+                get: function get() {
                     return this._x;
                 }, set: function set(x) {
-                    this._x = x;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoCubicRel.prototype, "y", { get: function get() {
+                    this._x = x; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoCubicRel.prototype, "y", {
+                get: function get() {
                     return this._y;
                 }, set: function set(y) {
-                    this._y = y;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoCubicRel.prototype, "x1", { get: function get() {
+                    this._y = y; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoCubicRel.prototype, "x1", {
+                get: function get() {
                     return this._x1;
                 }, set: function set(x1) {
-                    this._x1 = x1;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoCubicRel.prototype, "y1", { get: function get() {
+                    this._x1 = x1; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoCubicRel.prototype, "y1", {
+                get: function get() {
                     return this._y1;
                 }, set: function set(y1) {
-                    this._y1 = y1;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoCubicRel.prototype, "x2", { get: function get() {
+                    this._y1 = y1; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoCubicRel.prototype, "x2", {
+                get: function get() {
                     return this._x2;
                 }, set: function set(x2) {
-                    this._x2 = x2;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoCubicRel.prototype, "y2", { get: function get() {
+                    this._x2 = x2; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoCubicRel.prototype, "y2", {
+                get: function get() {
                     return this._y2;
                 }, set: function set(y2) {
-                    this._y2 = y2;this._segmentChanged();
-                }, enumerable: true });
+                    this._y2 = y2; this._segmentChanged();
+                }, enumerable: true
+            });
 
             window.SVGPathSegCurvetoQuadraticAbs = function (owningPathSegList, x, y, x1, y1) {
                 window.SVGPathSeg.call(this, window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS, "Q", owningPathSegList);
@@ -2443,26 +2498,34 @@
             window.SVGPathSegCurvetoQuadraticAbs.prototype.clone = function () {
                 return new window.SVGPathSegCurvetoQuadraticAbs(undefined, this._x, this._y, this._x1, this._y1);
             };
-            Object.defineProperty(window.SVGPathSegCurvetoQuadraticAbs.prototype, "x", { get: function get() {
+            Object.defineProperty(window.SVGPathSegCurvetoQuadraticAbs.prototype, "x", {
+                get: function get() {
                     return this._x;
                 }, set: function set(x) {
-                    this._x = x;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoQuadraticAbs.prototype, "y", { get: function get() {
+                    this._x = x; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoQuadraticAbs.prototype, "y", {
+                get: function get() {
                     return this._y;
                 }, set: function set(y) {
-                    this._y = y;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoQuadraticAbs.prototype, "x1", { get: function get() {
+                    this._y = y; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoQuadraticAbs.prototype, "x1", {
+                get: function get() {
                     return this._x1;
                 }, set: function set(x1) {
-                    this._x1 = x1;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoQuadraticAbs.prototype, "y1", { get: function get() {
+                    this._x1 = x1; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoQuadraticAbs.prototype, "y1", {
+                get: function get() {
                     return this._y1;
                 }, set: function set(y1) {
-                    this._y1 = y1;this._segmentChanged();
-                }, enumerable: true });
+                    this._y1 = y1; this._segmentChanged();
+                }, enumerable: true
+            });
 
             window.SVGPathSegCurvetoQuadraticRel = function (owningPathSegList, x, y, x1, y1) {
                 window.SVGPathSeg.call(this, window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_REL, "q", owningPathSegList);
@@ -2481,26 +2544,34 @@
             window.SVGPathSegCurvetoQuadraticRel.prototype.clone = function () {
                 return new window.SVGPathSegCurvetoQuadraticRel(undefined, this._x, this._y, this._x1, this._y1);
             };
-            Object.defineProperty(window.SVGPathSegCurvetoQuadraticRel.prototype, "x", { get: function get() {
+            Object.defineProperty(window.SVGPathSegCurvetoQuadraticRel.prototype, "x", {
+                get: function get() {
                     return this._x;
                 }, set: function set(x) {
-                    this._x = x;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoQuadraticRel.prototype, "y", { get: function get() {
+                    this._x = x; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoQuadraticRel.prototype, "y", {
+                get: function get() {
                     return this._y;
                 }, set: function set(y) {
-                    this._y = y;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoQuadraticRel.prototype, "x1", { get: function get() {
+                    this._y = y; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoQuadraticRel.prototype, "x1", {
+                get: function get() {
                     return this._x1;
                 }, set: function set(x1) {
-                    this._x1 = x1;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoQuadraticRel.prototype, "y1", { get: function get() {
+                    this._x1 = x1; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoQuadraticRel.prototype, "y1", {
+                get: function get() {
                     return this._y1;
                 }, set: function set(y1) {
-                    this._y1 = y1;this._segmentChanged();
-                }, enumerable: true });
+                    this._y1 = y1; this._segmentChanged();
+                }, enumerable: true
+            });
 
             window.SVGPathSegArcAbs = function (owningPathSegList, x, y, r1, r2, angle, largeArcFlag, sweepFlag) {
                 window.SVGPathSeg.call(this, window.SVGPathSeg.PATHSEG_ARC_ABS, "A", owningPathSegList);
@@ -2522,41 +2593,55 @@
             window.SVGPathSegArcAbs.prototype.clone = function () {
                 return new window.SVGPathSegArcAbs(undefined, this._x, this._y, this._r1, this._r2, this._angle, this._largeArcFlag, this._sweepFlag);
             };
-            Object.defineProperty(window.SVGPathSegArcAbs.prototype, "x", { get: function get() {
+            Object.defineProperty(window.SVGPathSegArcAbs.prototype, "x", {
+                get: function get() {
                     return this._x;
                 }, set: function set(x) {
-                    this._x = x;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegArcAbs.prototype, "y", { get: function get() {
+                    this._x = x; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegArcAbs.prototype, "y", {
+                get: function get() {
                     return this._y;
                 }, set: function set(y) {
-                    this._y = y;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegArcAbs.prototype, "r1", { get: function get() {
+                    this._y = y; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegArcAbs.prototype, "r1", {
+                get: function get() {
                     return this._r1;
                 }, set: function set(r1) {
-                    this._r1 = r1;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegArcAbs.prototype, "r2", { get: function get() {
+                    this._r1 = r1; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegArcAbs.prototype, "r2", {
+                get: function get() {
                     return this._r2;
                 }, set: function set(r2) {
-                    this._r2 = r2;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegArcAbs.prototype, "angle", { get: function get() {
+                    this._r2 = r2; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegArcAbs.prototype, "angle", {
+                get: function get() {
                     return this._angle;
                 }, set: function set(angle) {
-                    this._angle = angle;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegArcAbs.prototype, "largeArcFlag", { get: function get() {
+                    this._angle = angle; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegArcAbs.prototype, "largeArcFlag", {
+                get: function get() {
                     return this._largeArcFlag;
                 }, set: function set(largeArcFlag) {
-                    this._largeArcFlag = largeArcFlag;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegArcAbs.prototype, "sweepFlag", { get: function get() {
+                    this._largeArcFlag = largeArcFlag; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegArcAbs.prototype, "sweepFlag", {
+                get: function get() {
                     return this._sweepFlag;
                 }, set: function set(sweepFlag) {
-                    this._sweepFlag = sweepFlag;this._segmentChanged();
-                }, enumerable: true });
+                    this._sweepFlag = sweepFlag; this._segmentChanged();
+                }, enumerable: true
+            });
 
             window.SVGPathSegArcRel = function (owningPathSegList, x, y, r1, r2, angle, largeArcFlag, sweepFlag) {
                 window.SVGPathSeg.call(this, window.SVGPathSeg.PATHSEG_ARC_REL, "a", owningPathSegList);
@@ -2578,41 +2663,55 @@
             window.SVGPathSegArcRel.prototype.clone = function () {
                 return new window.SVGPathSegArcRel(undefined, this._x, this._y, this._r1, this._r2, this._angle, this._largeArcFlag, this._sweepFlag);
             };
-            Object.defineProperty(window.SVGPathSegArcRel.prototype, "x", { get: function get() {
+            Object.defineProperty(window.SVGPathSegArcRel.prototype, "x", {
+                get: function get() {
                     return this._x;
                 }, set: function set(x) {
-                    this._x = x;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegArcRel.prototype, "y", { get: function get() {
+                    this._x = x; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegArcRel.prototype, "y", {
+                get: function get() {
                     return this._y;
                 }, set: function set(y) {
-                    this._y = y;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegArcRel.prototype, "r1", { get: function get() {
+                    this._y = y; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegArcRel.prototype, "r1", {
+                get: function get() {
                     return this._r1;
                 }, set: function set(r1) {
-                    this._r1 = r1;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegArcRel.prototype, "r2", { get: function get() {
+                    this._r1 = r1; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegArcRel.prototype, "r2", {
+                get: function get() {
                     return this._r2;
                 }, set: function set(r2) {
-                    this._r2 = r2;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegArcRel.prototype, "angle", { get: function get() {
+                    this._r2 = r2; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegArcRel.prototype, "angle", {
+                get: function get() {
                     return this._angle;
                 }, set: function set(angle) {
-                    this._angle = angle;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegArcRel.prototype, "largeArcFlag", { get: function get() {
+                    this._angle = angle; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegArcRel.prototype, "largeArcFlag", {
+                get: function get() {
                     return this._largeArcFlag;
                 }, set: function set(largeArcFlag) {
-                    this._largeArcFlag = largeArcFlag;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegArcRel.prototype, "sweepFlag", { get: function get() {
+                    this._largeArcFlag = largeArcFlag; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegArcRel.prototype, "sweepFlag", {
+                get: function get() {
                     return this._sweepFlag;
                 }, set: function set(sweepFlag) {
-                    this._sweepFlag = sweepFlag;this._segmentChanged();
-                }, enumerable: true });
+                    this._sweepFlag = sweepFlag; this._segmentChanged();
+                }, enumerable: true
+            });
 
             window.SVGPathSegLinetoHorizontalAbs = function (owningPathSegList, x) {
                 window.SVGPathSeg.call(this, window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_ABS, "H", owningPathSegList);
@@ -2628,11 +2727,13 @@
             window.SVGPathSegLinetoHorizontalAbs.prototype.clone = function () {
                 return new window.SVGPathSegLinetoHorizontalAbs(undefined, this._x);
             };
-            Object.defineProperty(window.SVGPathSegLinetoHorizontalAbs.prototype, "x", { get: function get() {
+            Object.defineProperty(window.SVGPathSegLinetoHorizontalAbs.prototype, "x", {
+                get: function get() {
                     return this._x;
                 }, set: function set(x) {
-                    this._x = x;this._segmentChanged();
-                }, enumerable: true });
+                    this._x = x; this._segmentChanged();
+                }, enumerable: true
+            });
 
             window.SVGPathSegLinetoHorizontalRel = function (owningPathSegList, x) {
                 window.SVGPathSeg.call(this, window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL, "h", owningPathSegList);
@@ -2648,11 +2749,13 @@
             window.SVGPathSegLinetoHorizontalRel.prototype.clone = function () {
                 return new window.SVGPathSegLinetoHorizontalRel(undefined, this._x);
             };
-            Object.defineProperty(window.SVGPathSegLinetoHorizontalRel.prototype, "x", { get: function get() {
+            Object.defineProperty(window.SVGPathSegLinetoHorizontalRel.prototype, "x", {
+                get: function get() {
                     return this._x;
                 }, set: function set(x) {
-                    this._x = x;this._segmentChanged();
-                }, enumerable: true });
+                    this._x = x; this._segmentChanged();
+                }, enumerable: true
+            });
 
             window.SVGPathSegLinetoVerticalAbs = function (owningPathSegList, y) {
                 window.SVGPathSeg.call(this, window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_ABS, "V", owningPathSegList);
@@ -2668,11 +2771,13 @@
             window.SVGPathSegLinetoVerticalAbs.prototype.clone = function () {
                 return new window.SVGPathSegLinetoVerticalAbs(undefined, this._y);
             };
-            Object.defineProperty(window.SVGPathSegLinetoVerticalAbs.prototype, "y", { get: function get() {
+            Object.defineProperty(window.SVGPathSegLinetoVerticalAbs.prototype, "y", {
+                get: function get() {
                     return this._y;
                 }, set: function set(y) {
-                    this._y = y;this._segmentChanged();
-                }, enumerable: true });
+                    this._y = y; this._segmentChanged();
+                }, enumerable: true
+            });
 
             window.SVGPathSegLinetoVerticalRel = function (owningPathSegList, y) {
                 window.SVGPathSeg.call(this, window.SVGPathSeg.PATHSEG_LINETO_VERTICAL_REL, "v", owningPathSegList);
@@ -2688,11 +2793,13 @@
             window.SVGPathSegLinetoVerticalRel.prototype.clone = function () {
                 return new window.SVGPathSegLinetoVerticalRel(undefined, this._y);
             };
-            Object.defineProperty(window.SVGPathSegLinetoVerticalRel.prototype, "y", { get: function get() {
+            Object.defineProperty(window.SVGPathSegLinetoVerticalRel.prototype, "y", {
+                get: function get() {
                     return this._y;
                 }, set: function set(y) {
-                    this._y = y;this._segmentChanged();
-                }, enumerable: true });
+                    this._y = y; this._segmentChanged();
+                }, enumerable: true
+            });
 
             window.SVGPathSegCurvetoCubicSmoothAbs = function (owningPathSegList, x, y, x2, y2) {
                 window.SVGPathSeg.call(this, window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS, "S", owningPathSegList);
@@ -2711,26 +2818,34 @@
             window.SVGPathSegCurvetoCubicSmoothAbs.prototype.clone = function () {
                 return new window.SVGPathSegCurvetoCubicSmoothAbs(undefined, this._x, this._y, this._x2, this._y2);
             };
-            Object.defineProperty(window.SVGPathSegCurvetoCubicSmoothAbs.prototype, "x", { get: function get() {
+            Object.defineProperty(window.SVGPathSegCurvetoCubicSmoothAbs.prototype, "x", {
+                get: function get() {
                     return this._x;
                 }, set: function set(x) {
-                    this._x = x;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoCubicSmoothAbs.prototype, "y", { get: function get() {
+                    this._x = x; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoCubicSmoothAbs.prototype, "y", {
+                get: function get() {
                     return this._y;
                 }, set: function set(y) {
-                    this._y = y;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoCubicSmoothAbs.prototype, "x2", { get: function get() {
+                    this._y = y; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoCubicSmoothAbs.prototype, "x2", {
+                get: function get() {
                     return this._x2;
                 }, set: function set(x2) {
-                    this._x2 = x2;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoCubicSmoothAbs.prototype, "y2", { get: function get() {
+                    this._x2 = x2; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoCubicSmoothAbs.prototype, "y2", {
+                get: function get() {
                     return this._y2;
                 }, set: function set(y2) {
-                    this._y2 = y2;this._segmentChanged();
-                }, enumerable: true });
+                    this._y2 = y2; this._segmentChanged();
+                }, enumerable: true
+            });
 
             window.SVGPathSegCurvetoCubicSmoothRel = function (owningPathSegList, x, y, x2, y2) {
                 window.SVGPathSeg.call(this, window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL, "s", owningPathSegList);
@@ -2749,26 +2864,34 @@
             window.SVGPathSegCurvetoCubicSmoothRel.prototype.clone = function () {
                 return new window.SVGPathSegCurvetoCubicSmoothRel(undefined, this._x, this._y, this._x2, this._y2);
             };
-            Object.defineProperty(window.SVGPathSegCurvetoCubicSmoothRel.prototype, "x", { get: function get() {
+            Object.defineProperty(window.SVGPathSegCurvetoCubicSmoothRel.prototype, "x", {
+                get: function get() {
                     return this._x;
                 }, set: function set(x) {
-                    this._x = x;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoCubicSmoothRel.prototype, "y", { get: function get() {
+                    this._x = x; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoCubicSmoothRel.prototype, "y", {
+                get: function get() {
                     return this._y;
                 }, set: function set(y) {
-                    this._y = y;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoCubicSmoothRel.prototype, "x2", { get: function get() {
+                    this._y = y; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoCubicSmoothRel.prototype, "x2", {
+                get: function get() {
                     return this._x2;
                 }, set: function set(x2) {
-                    this._x2 = x2;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoCubicSmoothRel.prototype, "y2", { get: function get() {
+                    this._x2 = x2; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoCubicSmoothRel.prototype, "y2", {
+                get: function get() {
                     return this._y2;
                 }, set: function set(y2) {
-                    this._y2 = y2;this._segmentChanged();
-                }, enumerable: true });
+                    this._y2 = y2; this._segmentChanged();
+                }, enumerable: true
+            });
 
             window.SVGPathSegCurvetoQuadraticSmoothAbs = function (owningPathSegList, x, y) {
                 window.SVGPathSeg.call(this, window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS, "T", owningPathSegList);
@@ -2785,16 +2908,20 @@
             window.SVGPathSegCurvetoQuadraticSmoothAbs.prototype.clone = function () {
                 return new window.SVGPathSegCurvetoQuadraticSmoothAbs(undefined, this._x, this._y);
             };
-            Object.defineProperty(window.SVGPathSegCurvetoQuadraticSmoothAbs.prototype, "x", { get: function get() {
+            Object.defineProperty(window.SVGPathSegCurvetoQuadraticSmoothAbs.prototype, "x", {
+                get: function get() {
                     return this._x;
                 }, set: function set(x) {
-                    this._x = x;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoQuadraticSmoothAbs.prototype, "y", { get: function get() {
+                    this._x = x; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoQuadraticSmoothAbs.prototype, "y", {
+                get: function get() {
                     return this._y;
                 }, set: function set(y) {
-                    this._y = y;this._segmentChanged();
-                }, enumerable: true });
+                    this._y = y; this._segmentChanged();
+                }, enumerable: true
+            });
 
             window.SVGPathSegCurvetoQuadraticSmoothRel = function (owningPathSegList, x, y) {
                 window.SVGPathSeg.call(this, window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL, "t", owningPathSegList);
@@ -2811,16 +2938,20 @@
             window.SVGPathSegCurvetoQuadraticSmoothRel.prototype.clone = function () {
                 return new window.SVGPathSegCurvetoQuadraticSmoothRel(undefined, this._x, this._y);
             };
-            Object.defineProperty(window.SVGPathSegCurvetoQuadraticSmoothRel.prototype, "x", { get: function get() {
+            Object.defineProperty(window.SVGPathSegCurvetoQuadraticSmoothRel.prototype, "x", {
+                get: function get() {
                     return this._x;
                 }, set: function set(x) {
-                    this._x = x;this._segmentChanged();
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathSegCurvetoQuadraticSmoothRel.prototype, "y", { get: function get() {
+                    this._x = x; this._segmentChanged();
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathSegCurvetoQuadraticSmoothRel.prototype, "y", {
+                get: function get() {
                     return this._y;
                 }, set: function set(y) {
-                    this._y = y;this._segmentChanged();
-                }, enumerable: true });
+                    this._y = y; this._segmentChanged();
+                }, enumerable: true
+            });
 
             // Add createSVGPathSeg* functions to window.SVGPathElement.
             // Spec: http://www.w3.org/TR/SVG11/single-page.html#paths-Interfacewindow.SVGPathElement.
@@ -2938,15 +3069,21 @@
                 enumerable: true
             });
             // FIXME: The following are not implemented and simply return window.SVGPathElement.pathSegList.
-            Object.defineProperty(window.SVGPathElement.prototype, "normalizedPathSegList", { get: function get() {
+            Object.defineProperty(window.SVGPathElement.prototype, "normalizedPathSegList", {
+                get: function get() {
                     return this.pathSegList;
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathElement.prototype, "animatedPathSegList", { get: function get() {
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathElement.prototype, "animatedPathSegList", {
+                get: function get() {
                     return this.pathSegList;
-                }, enumerable: true });
-            Object.defineProperty(window.SVGPathElement.prototype, "animatedNormalizedPathSegList", { get: function get() {
+                }, enumerable: true
+            });
+            Object.defineProperty(window.SVGPathElement.prototype, "animatedNormalizedPathSegList", {
+                get: function get() {
                     return this.pathSegList;
-                }, enumerable: true });
+                }, enumerable: true
+            });
 
             // Process any pending mutations to the path element and update the list as needed.
             // This should be the first call of all public functions and is needed because
@@ -3104,7 +3241,7 @@
                 Source.prototype._skipOptionalSpaces = function () {
                     while (this._currentIndex < this._endIndex && this._isCurrentSpace()) {
                         this._currentIndex++;
-                    }return this._currentIndex < this._endIndex;
+                    } return this._currentIndex < this._endIndex;
                 };
 
                 Source.prototype._skipOptionalSpacesOrDelimiter = function () {
@@ -3206,7 +3343,7 @@
                     this._skipOptionalSpaces();
 
                     // Read the sign.
-                    if (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) == "+") this._currentIndex++;else if (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) == "-") {
+                    if (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) == "+") this._currentIndex++; else if (this._currentIndex < this._endIndex && this._string.charAt(this._currentIndex) == "-") {
                         this._currentIndex++;
                         sign = -1;
                     }
@@ -3281,7 +3418,7 @@
                     if (this._currentIndex >= this._endIndex) return undefined;
                     var flag = false;
                     var flagChar = this._string.charAt(this._currentIndex++);
-                    if (flagChar == "0") flag = false;else if (flagChar == "1") flag = true;else return undefined;
+                    if (flagChar == "0") flag = false; else if (flagChar == "1") flag = true; else return undefined;
 
                     this._skipOptionalSpacesOrDelimiter();
                     return flag;
@@ -3391,7 +3528,7 @@
 
     /* jshint ignore:end */
 
-    c3_chart_fn.axis = function () {};
+    c3_chart_fn.axis = function () { };
     c3_chart_fn.axis.labels = function (labels) {
         var $$ = this.internal;
         if (arguments.length) {
@@ -3759,7 +3896,7 @@
                 orgDomain = $$.x.domain(),
                 domain,
                 durationForFlow = flow.duration || duration,
-                done = flow.done || function () {},
+                done = flow.done || function () { },
                 wait = $$.generateWait();
 
             var xgrid = $$.xgrid || d3.selectAll([]),
@@ -3977,7 +4114,7 @@
         return config.data_groups;
     };
 
-    c3_chart_fn.legend = function () {};
+    c3_chart_fn.legend = function () { };
     c3_chart_fn.legend.show = function (targetIds) {
         var $$ = this.internal;
         $$.showLegend($$.mapToTargetIds(targetIds));
@@ -4113,7 +4250,7 @@
             return d3.select(this).classed(CLASS.SELECTED);
         }).map(function (d) {
             return d.map(function (d) {
-                var data = d.__data__;return data.data ? data.data : data;
+                var data = d.__data__; return data.data ? data.data : data;
             });
         }));
     };
@@ -4224,7 +4361,7 @@
         });
     };
 
-    c3_chart_fn.tooltip = function () {};
+    c3_chart_fn.tooltip = function () { };
     c3_chart_fn.tooltip.show = function (args) {
         var $$ = this.internal,
             index,
@@ -4435,18 +4572,18 @@
             hasGaugeType = $$.hasType('gauge'),
             singleArcWidth = $$.gaugeArcWidth / $$.filterTargetsToShow($$.data.targets).length,
             arc = $$.d3.svg.arc().outerRadius(function (d) {
-            return hasGaugeType ? $$.radius - singleArcWidth * d.index : $$.radius;
-        }).innerRadius(function (d) {
-            return hasGaugeType ? $$.radius - singleArcWidth * (d.index + 1) : $$.innerRadius;
-        }),
+                return hasGaugeType ? $$.radius - singleArcWidth * d.index : $$.radius;
+            }).innerRadius(function (d) {
+                return hasGaugeType ? $$.radius - singleArcWidth * (d.index + 1) : $$.innerRadius;
+            }),
             newArc = function newArc(d, withoutUpdate) {
-            var updated;
-            if (withoutUpdate) {
-                return arc(d);
-            } // for interpolate
-            updated = $$.updateAngle(d);
-            return updated ? arc(updated) : "M 0 0";
-        };
+                var updated;
+                if (withoutUpdate) {
+                    return arc(d);
+                } // for interpolate
+                updated = $$.updateAngle(d);
+                return updated ? arc(updated) : "M 0 0";
+            };
         // TODO: extends all function
         newArc.centroid = arc.centroid;
         return newArc;
@@ -4459,10 +4596,10 @@
             singleArcWidth = $$.gaugeArcWidth / $$.filterTargetsToShow($$.data.targets).length,
             expandWidth = Math.min($$.radiusExpanded * rate - $$.radius, singleArcWidth * 0.8 - (1 - rate) * 100),
             arc = $$.d3.svg.arc().outerRadius(function (d) {
-            return hasGaugeType ? $$.radius - singleArcWidth * d.index + expandWidth : $$.radiusExpanded * rate;
-        }).innerRadius(function (d) {
-            return hasGaugeType ? $$.radius - singleArcWidth * (d.index + 1) : $$.innerRadius;
-        });
+                return hasGaugeType ? $$.radius - singleArcWidth * d.index + expandWidth : $$.radiusExpanded * rate;
+            }).innerRadius(function (d) {
+                return hasGaugeType ? $$.radius - singleArcWidth * (d.index + 1) : $$.innerRadius;
+            });
         return function (d) {
             var updated = $$.updateAngle(d);
             return updated ? arc(updated) : "M 0 0";
@@ -4818,9 +4955,9 @@
         }).attr("transform", withTransform ? "scale(1)" : "").style("fill", function (d) {
             return $$.levelColor ? $$.levelColor(d.data.values[0].value) : $$.color(d.data.id);
         }) // Where gauge reading color would receive customization.
-        .call($$.endall, function () {
-            $$.transiting = false;
-        });
+            .call($$.endall, function () {
+                $$.transiting = false;
+            });
         mainArc.exit().transition().duration(durationForExit).style('opacity', 0).remove();
         main.selectAll('.' + CLASS.chartArc).select('text').style("opacity", 0).attr('class', function (d) {
             return $$.isGaugeType(d.data) ? CLASS.gaugeValue : '';
@@ -5079,16 +5216,16 @@
             }
             // if specified, choose that color
             else if (colors[id]) {
-                    color = colors[id];
+                color = colors[id];
+            }
+            // if not specified, choose from pattern
+            else {
+                if (ids.indexOf(id) < 0) {
+                    ids.push(id);
                 }
-                // if not specified, choose from pattern
-                else {
-                        if (ids.indexOf(id) < 0) {
-                            ids.push(id);
-                        }
-                        color = pattern[ids.indexOf(id) % pattern.length];
-                        colors[id] = color;
-                    }
+                color = pattern[ids.indexOf(id) % pattern.length];
+                colors[id] = color;
+            }
             return callback instanceof Function ? callback(color, d) : color;
         };
     };
@@ -5130,19 +5267,19 @@
             zoom_extent: undefined,
             zoom_privileged: false,
             zoom_rescale: false,
-            zoom_onzoom: function zoom_onzoom() {},
-            zoom_onzoomstart: function zoom_onzoomstart() {},
-            zoom_onzoomend: function zoom_onzoomend() {},
+            zoom_onzoom: function zoom_onzoom() { },
+            zoom_onzoomstart: function zoom_onzoomstart() { },
+            zoom_onzoomend: function zoom_onzoomend() { },
             zoom_x_min: undefined,
             zoom_x_max: undefined,
             interaction_brighten: true,
             interaction_enabled: true,
-            onmouseover: function onmouseover() {},
-            onmouseout: function onmouseout() {},
-            onresize: function onresize() {},
-            onresized: function onresized() {},
-            oninit: function oninit() {},
-            onrendered: function onrendered() {},
+            onmouseover: function onmouseover() { },
+            onmouseout: function onmouseout() { },
+            onresize: function onresize() { },
+            onresized: function onresized() { },
+            oninit: function oninit() { },
+            onrendered: function onrendered() { },
             transition_duration: 350,
             data_x: undefined,
             data_xs: {},
@@ -5172,11 +5309,11 @@
             },
             data_selection_multiple: true,
             data_selection_draggable: false,
-            data_onclick: function data_onclick() {},
-            data_onmouseover: function data_onmouseover() {},
-            data_onmouseout: function data_onmouseout() {},
-            data_onselected: function data_onselected() {},
-            data_onunselected: function data_onunselected() {},
+            data_onclick: function data_onclick() { },
+            data_onmouseover: function data_onmouseover() { },
+            data_onmouseout: function data_onmouseout() { },
+            data_onselected: function data_onselected() { },
+            data_onunselected: function data_onunselected() { },
             data_url: undefined,
             data_headers: undefined,
             data_json: undefined,
@@ -5190,7 +5327,8 @@
             subchart_show: false,
             subchart_size_height: 60,
             subchart_axis_x_show: true,
-            subchart_onbrush: function subchart_onbrush() {},
+            subchart_axis_x_tick_format: undefined,
+            subchart_onbrush: function subchart_onbrush() { },
             // color
             color_pattern: [],
             color_threshold: {},
@@ -5342,8 +5480,8 @@
             tooltip_init_show: false,
             tooltip_init_x: 0,
             tooltip_init_position: { top: '0px', left: '50px' },
-            tooltip_onshow: function tooltip_onshow() {},
-            tooltip_onhide: function tooltip_onhide() {},
+            tooltip_onshow: function tooltip_onshow() { },
+            tooltip_onhide: function tooltip_onhide() { },
             // title
             title_text: undefined,
             title_padding: {
@@ -5553,12 +5691,12 @@
                 }
                 // if not included in input data, find from preloaded data of other id's x
                 else if (config.data_x) {
-                        $$.data.xs[id] = $$.getOtherTargetXs();
-                    }
-                    // if not included in input data, find from preloaded data
-                    else if (notEmpty(config.data_xs)) {
-                            $$.data.xs[id] = $$.getXValuesOfXKey(xKey, $$.data.targets);
-                        }
+                    $$.data.xs[id] = $$.getOtherTargetXs();
+                }
+                // if not included in input data, find from preloaded data
+                else if (notEmpty(config.data_xs)) {
+                    $$.data.xs[id] = $$.getXValuesOfXKey(xKey, $$.data.targets);
+                }
                 // MEMO: if no x included, use same x of current will be used
             } else {
                 $$.data.xs[id] = data.map(function (d, i) {
@@ -6168,7 +6306,7 @@
     c3_chart_internal_fn.unload = function (targetIds, done) {
         var $$ = this;
         if (!done) {
-            done = function done() {};
+            done = function done() { };
         }
         // filter existing target
         targetIds = targetIds.filter(function (id) {
@@ -6292,8 +6430,8 @@
         var $$ = this,
             config = $$.config,
             targetsByAxisId = targets.filter(function (t) {
-            return $$.axis.getId(t.id) === axisId;
-        }),
+                return $$.axis.getId(t.id) === axisId;
+            }),
             yTargets = xDomain ? $$.filterByXDomain(targetsByAxisId, xDomain) : targetsByAxisId,
             yMin = axisId === 'y2' ? config.axis_y2_min : config.axis_y_min,
             yMax = axisId === 'y2' ? config.axis_y2_max : config.axis_y_max,
@@ -6637,8 +6775,8 @@
             data_labels = $$.config.data_labels,
             format,
             defaultFormat = function defaultFormat(v) {
-            return isValue(v) ? +v : "";
-        };
+                return isValue(v) ? +v : "";
+            };
         // find format according to axis id
         if (typeof data_labels.format === 'function') {
             format = data_labels.format;
@@ -6700,15 +6838,15 @@
                 return $$.x(d) - tickOffset;
             }
         } : {
-            'x1': function x1(d) {
-                return $$.x(d) + tickOffset;
-            },
-            'x2': function x2(d) {
-                return $$.x(d) + tickOffset;
-            },
-            'y1': 0,
-            'y2': $$.height
-        };
+                'x1': function x1(d) {
+                    return $$.x(d) + tickOffset;
+                },
+                'x2': function x2(d) {
+                    return $$.x(d) + tickOffset;
+                },
+                'y1': 0,
+                'y2': $$.height
+            };
 
         $$.xgrid = $$.main.select('.' + CLASS.xgrids).selectAll('.' + CLASS.xgrid).data(xgridData);
         $$.xgrid.enter().append('line').attr("class", CLASS.xgrid);
@@ -6804,8 +6942,8 @@
         var $$ = this,
             config = $$.config,
             dataToShow = selectedData.filter(function (d) {
-            return d && isValue(d.value);
-        }),
+                return d && isValue(d.value);
+            }),
             focusEl = $$.main.selectAll('line.' + CLASS.xgridFocus),
             xx = $$.xx.bind($$);
         if (!config.tooltip_show) {
@@ -6870,8 +7008,8 @@
             config = $$.config,
             toRemove = $$.getGridFilterToRemove(params),
             toShow = function toShow(line) {
-            return !toRemove(line);
-        },
+                return !toRemove(line);
+            },
             classLines = forX ? CLASS.xgridLines : CLASS.ygridLines,
             classLine = forX ? CLASS.xgridLine : CLASS.ygridLine;
         $$.main.select('.' + classLines).selectAll('.' + classLine).filter(toRemove).transition().duration(config.transition_duration).style('opacity', 0).remove();
@@ -7004,7 +7142,9 @@
         var $$ = this,
             d3 = $$.d3,
             config = $$.config;
-        eventRectEnter.append("rect").attr("class", $$.classEvent.bind($$)).style("cursor", config.data_selection_enabled && config.data_selection_grouped ? "pointer" : null).on('mouseover', function (d) {
+        eventRectEnter.append("rect").attr("class", $$.classEvent.bind($$)).style("cursor", config.data_selection_enabled && config.data_selection_grouped ? "pointer" : null).style('display', function (d) {
+            return $$.data.targets[0].values[d.x].value === null ? 'none' : 'block';
+        }).on('mouseover', function (d) {
             var index = d.index;
 
             if ($$.dragging || $$.flowing) {
@@ -7033,7 +7173,6 @@
                 return;
             }
             $$.hideXGridFocus();
-            $$.hideTooltip();
             // Undo expanded shapes
             $$.unexpandCircles();
             $$.unexpandBars();
@@ -7078,7 +7217,6 @@
                 }
                 if (!config.tooltip_grouped) {
                     $$.hideXGridFocus();
-                    $$.hideTooltip();
                     if (!config.data_selection_grouped) {
                         $$.unexpandCircles(index);
                         $$.unexpandBars(index);
@@ -7091,12 +7229,25 @@
                     eventRect.style('cursor', 'pointer');
                 }
                 if (!config.tooltip_grouped) {
-                    $$.showTooltip([d], this);
                     $$.showXGridFocus([d]);
                     if (config.point_focus_expand_enabled) {
                         $$.expandCircles(index, d.id, true);
                     }
                     $$.expandBars(index, d.id, true);
+                }
+            });
+        }).on('mouseenter', function (d) {
+            var selectedData,
+                index = d.index;
+                selectedData = $$.filterTargetsToShow($$.data.targets).map(function (t) {
+                    return $$.addName($$.getValueOnIndex(t.values, index));
+                });
+            if (config.tooltip_grouped) {
+                $$.showTooltip(selectedData, this);
+            }
+            $$.main.selectAll('.' + CLASS.shape + '-' + index).each(function (d) {
+                if (!config.tooltip_grouped) {
+                    $$.showTooltip([d], this);
                 }
             });
         }).on('click', function (d) {
@@ -7123,7 +7274,7 @@
             $$.dragstart(d3.mouse(this));
         }).on('dragend', function () {
             $$.dragend();
-        }) : function () {});
+        }) : function () { });
     };
 
     c3_chart_internal_fn.generateEventRectsForMultipleXs = function (eventRectEnter) {
@@ -7227,7 +7378,7 @@
             $$.dragstart(d3.mouse(this));
         }).on('dragend', function () {
             $$.dragend();
-        }) : function () {});
+        }) : function () { });
     };
     c3_chart_internal_fn.dispatchEvent = function (type, index, mouse) {
         var $$ = this,
@@ -7264,9 +7415,9 @@
         var $$ = this,
             config = $$.config,
             insetLegendPosition = {
-            top: $$.isLegendTop ? $$.getCurrentPaddingTop() + config.legend_inset_y + 5.5 : $$.currentHeight - legendHeight - $$.getCurrentPaddingBottom() - config.legend_inset_y,
-            left: $$.isLegendLeft ? $$.getCurrentPaddingLeft() + config.legend_inset_x + 0.5 : $$.currentWidth - legendWidth - $$.getCurrentPaddingRight() - config.legend_inset_x + 0.5
-        };
+                top: $$.isLegendTop ? $$.getCurrentPaddingTop() + config.legend_inset_y + 5.5 : $$.currentHeight - legendHeight - $$.getCurrentPaddingBottom() - config.legend_inset_y,
+                left: $$.isLegendLeft ? $$.getCurrentPaddingLeft() + config.legend_inset_x + 0.5 : $$.currentWidth - legendWidth - $$.getCurrentPaddingRight() - config.legend_inset_x + 0.5
+            };
 
         $$.margin3 = {
             top: $$.isLegendRight ? 0 : $$.isLegendInset ? insetLegendPosition.top : $$.currentHeight - legendHeight,
@@ -7564,9 +7715,9 @@
         texts = $$.legend.selectAll('text').data(targetIds).text(function (id) {
             return isDefined(config.data_names[id]) ? config.data_names[id] : id;
         }) // MEMO: needed for update
-        .each(function (id, i) {
-            updatePositions(this, id, i);
-        });
+            .each(function (id, i) {
+                updatePositions(this, id, i);
+            });
         (withTransition ? texts.transition() : texts).attr('x', xForLegendText).attr('y', yForLegendText);
 
         rects = $$.legend.selectAll('rect.' + CLASS.legendItemEvent).data(targetIds);
@@ -7622,12 +7773,12 @@
     c3_chart_internal_fn.redrawRegion = function (withTransition) {
         var $$ = this,
             regions = $$.mainRegion.selectAll('rect').each(function () {
-            // data is binded to g and it's not transferred to rect (child node) automatically,
-            // then data of each rect has to be updated manually.
-            // TODO: there should be more efficient way to solve this?
-            var parentData = $$.d3.select(this.parentNode).datum();
-            $$.d3.select(this).datum(parentData);
-        }),
+                // data is binded to g and it's not transferred to rect (child node) automatically,
+                // then data of each rect has to be updated manually.
+                // TODO: there should be more efficient way to solve this?
+                var parentData = $$.d3.select(this.parentNode).datum();
+                $$.d3.select(this).datum(parentData);
+            }),
             x = $$.regionX.bind($$),
             y = $$.regionY.bind($$),
             w = $$.regionWidth.bind($$),
@@ -7772,12 +7923,13 @@
         $$.subY2 = $$.getY($$.subYMin, $$.subYMax, forInit ? config.axis_y2_default : $$.subY2.domain());
         // update axes
         $$.xAxisTickFormat = $$.axis.getXAxisTickFormat();
+        $$.subXAxisTickFormat = $$.axis.getSubXAxisTickFormat();
         $$.xAxisTickValues = $$.axis.getXAxisTickValues();
         $$.yAxisTickValues = $$.axis.getYAxisTickValues();
         $$.y2AxisTickValues = $$.axis.getY2AxisTickValues();
 
         $$.xAxis = $$.axis.getXAxis($$.x, $$.xOrient, $$.xAxisTickFormat, $$.xAxisTickValues, config.axis_x_tick_outer);
-        $$.subXAxis = $$.axis.getXAxis($$.subX, $$.subXOrient, $$.xAxisTickFormat, $$.xAxisTickValues, config.axis_x_tick_outer);
+        $$.subXAxis = $$.axis.getXAxis($$.subX, $$.subXOrient, $$.subXAxisTickFormat, $$.xAxisTickValues, config.axis_x_tick_outer);
         $$.yAxis = $$.axis.getYAxis($$.y, $$.yOrient, config.axis_y_tick_format, $$.yAxisTickValues, config.axis_y_tick_outer);
         $$.y2Axis = $$.axis.getYAxis($$.y2, $$.y2Orient, config.axis_y2_tick_format, $$.y2AxisTickValues, config.axis_y2_tick_outer);
 
@@ -7848,7 +8000,7 @@
         if (that.nodeName === 'circle') {
             if ($$.isStepType(d)) {
                 // circle is hidden in step chart, so treat as within the click area
-                toggle = function toggle() {}; // TODO: how to select step chart?
+                toggle = function toggle() { }; // TODO: how to select step chart?
             } else {
                 toggle = $$.togglePoint;
             }
@@ -7906,8 +8058,8 @@
             classBar = $$.classBar.bind($$),
             initialOpacity = $$.initialOpacity.bind($$),
             color = function color(d) {
-            return $$.color(d.id);
-        };
+                return $$.color(d.id);
+            };
         $$.mainBar = $$.main.selectAll('.' + CLASS.bars).selectAll('.' + CLASS.bar).data(barData);
         $$.mainBar.enter().append('path').attr("class", classBar).style("stroke", color).style("fill", color);
         $$.mainBar.style("opacity", initialOpacity);
@@ -7968,7 +8120,7 @@
             var y0 = yScale.call($$, d.id)(0),
                 offset = barOffset(d, i) || y0,
                 // offset is for stacked bar chart
-            posX = barX(d),
+                posX = barX(d),
                 posY = barY(d);
             // fix posY not to overflow opposite quadrant
             if ($$.config.axis_rotated) {
@@ -8042,8 +8194,8 @@
         var $$ = this,
             targets = $$.orderTargets($$.filterTargetsToShow($$.data.targets.filter(typeFilter, $$))),
             targetIds = targets.map(function (t) {
-            return t.id;
-        });
+                return t.id;
+            });
         return function (d, i) {
             var scale = isSub ? $$.getSubYScale(d.id) : $$.getYScale(d.id),
                 y0 = scale(0),
@@ -8150,11 +8302,11 @@
             getPoints = $$.generateGetLinePoints(lineIndices, isSub),
             yScaleGetter = isSub ? $$.getSubYScale : $$.getYScale,
             xValue = function xValue(d) {
-            return (isSub ? $$.subxx : $$.xx).call($$, d);
-        },
+                return (isSub ? $$.subxx : $$.xx).call($$, d);
+            },
             yValue = function yValue(d, i) {
-            return config.data_groups.length > 0 ? getPoints(d, i)[0][1] : yScaleGetter.call($$, d.id)(d.value);
-        };
+                return config.data_groups.length > 0 ? getPoints(d, i)[0][1] : yScaleGetter.call($$, d.id)(d.value);
+            };
 
         line = config.axis_rotated ? line.x(yValue).y(xValue) : line.x(xValue).y(yValue);
         if (!config.line_connectNull) {
@@ -8201,7 +8353,7 @@
             var y0 = yScale.call($$, d.id)(0),
                 offset = lineOffset(d, i) || y0,
                 // offset is for stacked area chart
-            posX = x(d),
+                posX = x(d),
                 posY = y(d);
             // fix posY not to overflow opposite quadrant
             if (config.axis_rotated) {
@@ -8315,19 +8467,19 @@
             }
             // Draw with region // TODO: Fix for horizotal charts
             else {
-                    xp = $$.getScale(d[i - 1].x + xOffset, d[i].x + xOffset, $$.isTimeSeries());
-                    yp = $$.getScale(d[i - 1].value, d[i].value);
+                xp = $$.getScale(d[i - 1].x + xOffset, d[i].x + xOffset, $$.isTimeSeries());
+                yp = $$.getScale(d[i - 1].value, d[i].value);
 
-                    dx = x(d[i].x) - x(d[i - 1].x);
-                    dy = y(d[i].value) - y(d[i - 1].value);
-                    dd = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-                    diff = 2 / dd;
-                    diffx2 = diff * 2;
+                dx = x(d[i].x) - x(d[i - 1].x);
+                dy = y(d[i].value) - y(d[i - 1].value);
+                dd = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+                diff = 2 / dd;
+                diffx2 = diff * 2;
 
-                    for (j = diff; j <= 1; j += diffx2) {
-                        s += sWithRegion(d[i - 1], d[i], j, diff);
-                    }
+                for (j = diff; j <= 1; j += diffx2) {
+                    s += sWithRegion(d[i - 1], d[i], j, diff);
                 }
+            }
             prev = d[i].x;
         }
 
@@ -8339,7 +8491,7 @@
             d3 = $$.d3;
         $$.mainArea = $$.main.selectAll('.' + CLASS.areas).selectAll('.' + CLASS.area).data($$.lineData.bind($$));
         $$.mainArea.enter().append('path').attr("class", $$.classArea.bind($$)).style("fill", $$.color).style("opacity", function () {
-            $$.orgAreaOpacity = +d3.select(this).style('opacity');return 0;
+            $$.orgAreaOpacity = +d3.select(this).style('opacity'); return 0;
         });
         $$.mainArea.style("opacity", $$.orgAreaOpacity);
         $$.mainArea.exit().transition().duration(durationForExit).style('opacity', 0).remove();
@@ -8354,14 +8506,14 @@
             getPoints = $$.generateGetAreaPoints(areaIndices, isSub),
             yScaleGetter = isSub ? $$.getSubYScale : $$.getYScale,
             xValue = function xValue(d) {
-            return (isSub ? $$.subxx : $$.xx).call($$, d);
-        },
+                return (isSub ? $$.subxx : $$.xx).call($$, d);
+            },
             value0 = function value0(d, i) {
-            return config.data_groups.length > 0 ? getPoints(d, i)[0][1] : yScaleGetter.call($$, d.id)($$.getAreaBaseValue(d.id));
-        },
+                return config.data_groups.length > 0 ? getPoints(d, i)[0][1] : yScaleGetter.call($$, d.id)($$.getAreaBaseValue(d.id));
+            },
             value1 = function value1(d, i) {
-            return config.data_groups.length > 0 ? getPoints(d, i)[1][1] : yScaleGetter.call($$, d.id)(d.value);
-        };
+                return config.data_groups.length > 0 ? getPoints(d, i)[1][1] : yScaleGetter.call($$, d.id)(d.value);
+            };
 
         area = config.axis_rotated ? area.x0(value0).x1(value1).y(xValue) : area.x(xValue).y0(config.area_above ? 0 : value0).y1(value1);
         if (!config.line_connectNull) {
@@ -8406,7 +8558,7 @@
             var y0 = yScale.call($$, d.id)(0),
                 offset = areaOffset(d, i) || y0,
                 // offset is for stacked area chart
-            posX = x(d),
+                posX = x(d),
                 posY = y(d);
             // fix posY not to overflow opposite quadrant
             if (config.axis_rotated) {
@@ -8424,13 +8576,18 @@
     c3_chart_internal_fn.updateCircle = function () {
         var $$ = this;
         $$.mainCircle = $$.main.selectAll('.' + CLASS.circles).selectAll('.' + CLASS.circle).data($$.lineOrScatterData.bind($$));
-        $$.mainCircle.enter().append("circle").attr("class", $$.classCircle.bind($$)).attr("r", $$.pointR.bind($$)).style("fill", $$.color);
+        $$.mainCircle.enter().append("circle")
+            .attr("class", $$.classCircle.bind($$))
+            .attr("r", $$.pointR.bind($$))
+            .style("stroke", $$.color)
+            .style("fill", "white")
+            .style("stroke-width", "2px");
         $$.mainCircle.style("opacity", $$.initialOpacityForCircle.bind($$));
         $$.mainCircle.exit().remove();
     };
     c3_chart_internal_fn.redrawCircle = function (cx, cy, withTransition) {
         var selectedCircles = this.main.selectAll('.' + CLASS.selectedCircle);
-        return [(withTransition ? this.mainCircle.transition(Math.random().toString()) : this.mainCircle).style('opacity', this.opacityForCircle.bind(this)).style("fill", this.color).attr("cx", cx).attr("cy", cy), (withTransition ? selectedCircles.transition(Math.random().toString()) : selectedCircles).attr("cx", cx).attr("cy", cy)];
+        return [(withTransition ? this.mainCircle.transition(Math.random().toString()) : this.mainCircle).style('opacity', this.opacityForCircle.bind(this)).style("stroke", this.color).style("fill", "white").style("stroke-width", "2px").attr("cx", cx).attr("cy", cy), (withTransition ? selectedCircles.transition(Math.random().toString()) : selectedCircles).attr("cx", cx).attr("cy", cy)];
     };
     c3_chart_internal_fn.circleX = function (d) {
         return d.x || d.x === 0 ? this.x(d.x) : null;
@@ -8651,7 +8808,7 @@
     c3_chart_internal_fn.initSubchart = function () {
         var $$ = this,
             config = $$.config,
-            context = $$.context = $$.svg.append("g").attr("transform", $$.getTranslate('context')),
+            context = $$.context = $$.svg.append("g").attr("transform", $$.getTranslate('context')).attr('class', 'c3-subchart'),
             visibility = config.subchart_show ? 'visible' : 'hidden';
 
         context.style('visibility', visibility);
@@ -8667,6 +8824,9 @@
 
         // Add extent rect for Brush
         context.append("g").attr("clip-path", $$.clipPath).attr("class", CLASS.brush).call($$.brush);
+
+        //Design background rect for Brush
+        context.select('.' + CLASS.brush + ' rect.background').attr('rx', '3').attr('y', '1');
 
         // ATTENTION: This must be called AFTER chart added
         // Add Axis
@@ -8687,6 +8847,15 @@
             classAreas = $$.classAreas.bind($$);
 
         if (config.subchart_show) {
+            var indexToDelete = new Array();
+            for (var i = 0; i < targets.length; i++) {
+                if (String(targets[i].id).substr(0, 4) === 'thre') {
+                    indexToDelete.push(i);
+                }
+            }
+            for (var i = indexToDelete.length - 1; i >= 0; i--) {
+                targets.splice(indexToDelete[i], 1);
+            }
             //-- Bar --//
             contextBarUpdate = context.select('.' + CLASS.chartBars).selectAll('.' + CLASS.chartBar).data(targets).attr('class', classChartBar);
             contextBarEnter = contextBarUpdate.enter().append('g').style('opacity', 0).attr('class', classChartBar);
@@ -8703,6 +8872,17 @@
 
             //-- Brush --//
             context.selectAll('.' + CLASS.brush + ' rect').attr(config.axis_rotated ? "width" : "height", config.axis_rotated ? $$.width2 : $$.height2);
+            context.select("." + CLASS.brush + ' .extent').attr("rx", "3").attr("y", "1");
+            context.select('.' + CLASS.brush + ' .resize.e rect').attr('width', 15).attr('x', -12);
+            context.select('.' + CLASS.brush + ' .resize.w rect').attr('width', 15);
+            context.select('.' + CLASS.brush + ' .resize.w').append("line").attr('x1', 6.5).attr('y1', 20).attr('x2', 12).attr('y2', 20);
+            context.select('.' + CLASS.brush + ' .resize.w').append("line").attr('x1', 6.5).attr('y1', 23).attr('x2', 12).attr('y2', 23);
+            context.select('.' + CLASS.brush + ' .resize.w').append("line").attr('x1', 6.5).attr('y1', 26).attr('x2', 12).attr('y2', 26);
+            context.select('.' + CLASS.brush + ' .resize.w').append("line").attr('x1', 6.5).attr('y1', 29).attr('x2', 12).attr('y2', 29);
+            context.select('.' + CLASS.brush + ' .resize.e').append("line").attr('x1', -12).attr('y1', 20).attr('x2', -6.5).attr('y2', 20);
+            context.select('.' + CLASS.brush + ' .resize.e').append("line").attr('x1', -12).attr('y1', 23).attr('x2', -6.5).attr('y2', 23);
+            context.select('.' + CLASS.brush + ' .resize.e').append("line").attr('x1', -12).attr('y1', 26).attr('x2', -6.5).attr('y2', 26);
+            context.select('.' + CLASS.brush + ' .resize.e').append("line").attr('x1', -12).attr('y1', 29).attr('x2', -6.5).attr('y2', 29);
         }
     };
     c3_chart_internal_fn.updateBarForSubchart = function (durationForExit) {
@@ -8730,7 +8910,7 @@
             d3 = $$.d3;
         $$.contextArea = $$.context.selectAll('.' + CLASS.areas).selectAll('.' + CLASS.area).data($$.lineData.bind($$));
         $$.contextArea.enter().append('path').attr("class", $$.classArea.bind($$)).style("fill", $$.color).style("opacity", function () {
-            $$.orgAreaOpacity = +d3.select(this).style('opacity');return 0;
+            $$.orgAreaOpacity = +d3.select(this).style('opacity'); return 0;
         });
         $$.contextArea.style("opacity", 0);
         $$.contextArea.exit().transition().duration(durationForExit).style('opacity', 0).remove();
@@ -9050,8 +9230,8 @@
             config = $$.config,
             titleFormat = config.tooltip_format_title || defaultTitleFormat,
             nameFormat = config.tooltip_format_name || function (name) {
-            return name;
-        },
+                return name;
+            },
             valueFormat = config.tooltip_format_value || defaultValueFormat,
             text,
             i,
@@ -9136,21 +9316,13 @@
         var tWidth, tHeight, position;
         var forArc = $$.hasArcType(),
             dataToShow = selectedData.filter(function (d) {
-            return d && isValue(d.value);
-        }),
+                return d && isValue(d.value);
+            }),
             positionFunction = config.tooltip_position || c3_chart_internal_fn.tooltipPosition;
         if (dataToShow.length === 0 || !config.tooltip_show) {
             return;
         }
-        $$.tooltip.html(config.tooltip_contents.call($$, selectedData, $$.axis.getXAxisTickFormat(), $$.getYFormat(forArc), $$.color)).style("display", "block");
-
-        // Get tooltip dimensions
-        tWidth = $$.tooltip.property('offsetWidth');
-        tHeight = $$.tooltip.property('offsetHeight');
-
-        position = positionFunction.call(this, dataToShow, tWidth, tHeight, element);
-        // Set tooltip
-        $$.tooltip.style("top", position.top + "px").style("left", position.left + 'px');
+        $$.tooltip.html(config.tooltip_contents.call($$, selectedData, $$.axis.getXAxisTickFormat(), $$.getYFormat(forArc), $$.color));
     };
     c3_chart_internal_fn.hideTooltip = function () {
         this.tooltip.style("display", "none");
@@ -9312,7 +9484,7 @@
     };
     c3_chart_internal_fn.updateZoom = function () {
         var $$ = this,
-            z = $$.config.zoom_enabled ? $$.zoom : function () {};
+            z = $$.config.zoom_enabled ? $$.zoom : function () { };
         $$.main.select('.' + CLASS.zoomRect).call(z).on("dblclick.zoom", null);
         $$.main.selectAll('.' + CLASS.eventRect).call(z).on("dblclick.zoom", null);
     };
